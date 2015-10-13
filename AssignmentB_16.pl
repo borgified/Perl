@@ -1,3 +1,8 @@
+#!/usr/bin/env perl
+
+use warnings;
+use strict;
+
 #Write the following problem, with the following restrictions: 
 #PROBLEM B16:
 #Do NOT use regular expressions 
@@ -33,19 +38,87 @@
 #22 q 5 6  output should be:  no valid number entered   (or some similar error statement)  
 
 ## PROBLEM B16 - DO NOT USE REGEX OR ARRAYS;
+
 print "Please enter a sequence of numbers \(between 1 and 20\) and\/or letters separated by a space:\n";
-while(){for(split /\s+/,$input=<stdin>){
-	$sum=0;
-		if(($_ > 20) || ($_ < 0))
-		{print "Please enter numbers between 1 and 20 only:\n";
-		exit;}
-        elsif (($_ eq 'q') or ($_ eq 'Q'))
-        {exit;}
-	elsif ($_ =~/\D/)
-	{print "Not a valid entry.\n";
-	exit;}
-	else{print $_;
-             $sum+=$_;
-             print $sum;}
+
+my $total=0;
+
+while(<DATA>){
+  my $str = $_;
+  chomp $str;
+  print "string: \"$str\"\n";
+  my $length = length $str;
+  my $numbers_to_add;
+  my $item;
+  for(my $x=0;$x<$length;$x++){
+    my $cursor = substr $str,$x,1; #extract the char at location $x
+
+    print "cursor is on $cursor\n";
+    if($cursor eq ' '){
+      print "this is an item: \'$item\'\n";
+      if(is_a_positive_integer($item)){
+        if(is_a_valid_number($item)){
+          print " this item is a valid number\n";
+        }else{
+          print " this item is not a valid number\n";
+        }
+      }else{
+        print "this is not a valid item $item\n";
+      }
+
+      $item="";
+    }else{
+      $item=$item.$cursor;
+    }
+
+  }
+  print "\n";
 }
+
+sub is_a_valid_number {
+  my $n = shift @_;
+  if(($n >= 1)||($n <=20)){
+    return 1;
+  }else{
+    return 0;
+  }
 }
+
+sub is_a_positive_integer{
+  my $arg = shift @_;
+  my $le = length $arg;
+  for(my $x=0;$x<$le;$x++){
+    my $n = substr $arg,$x,1;
+    if($n eq '1' || $n eq '2' || $n eq '3' || $n eq '4' || $n eq '5' || $n eq '6' || $n eq '7' || $n eq '8' || $n eq '9' || $n eq '0'){
+    }else{
+      return 0;
+    }
+  }
+  return 1;
+}
+
+
+
+#    if(lc($cursor) eq 'q'){
+#      print "found q";
+#      next;
+#      #print "$numbers_to_add = $total\n";
+#      }
+#    }elsif($cursor eq ' '){
+#      $numbers_to_add=$numbers_to_add.$temp."+";
+#      $numbers_to_add="";
+#    }else{
+#      $temp=$temp.$cursor;
+#    }
+#
+#  }
+#  print "\n";
+#}
+
+__DATA__
+1 12 a 2 5 P Q 
+1 3 A t 4 q 
+c 1 Q 
+a b c d Q 
+1 2 34 q 4 5 6
+22 q 5 6 
