@@ -1,0 +1,35 @@
+
+
+print "Please enter a sequence of numbers \(between 1 and 20\) and\/or letters separated by a space:\n";
+
+
+$input = <stdin>;
+while ($input !=undef || $input !=chr($1) || $input !='q' || $input !='Q' && $input <= 20){
+push $input(@arr);}
+
+#@input = <stdin>;
+#$l_input = length(@input);
+#@arr = @input;
+#$offset = 0;
+#$next=(@array,$l_input,$offset+1);
+#$\="+";
+
+foreach (@arr){
+ if ($_ !=undef || $_ !=chr($1) || $_ !='q' || $_ !='Q' && $_ <= 20){
+	push $_(@arr,$l_input,$offset);}
+	else{print @arr;}
+	#elsif{($_ !=undef || $_ !=chr($1) || $_ !='q' || $input !='Q' && $_ <= 20){
+	
+	}
+#@input = <stdin>;
+#$offset = 0;
+#$position = (@input,$l_input,$offset);
+#print "@input\t$l_input\t$position";
+#
+#
+#foreach (@input){
+	#if ($_ >10)
+	#{print ("$_\n");
+	#}
+	#last;
+}#
